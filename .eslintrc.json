@@ -1,7 +1,13 @@
 {
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
   "extends": ["eslint:recommended", "next", "next/core-web-vitals", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/jsx-no-target-blank": "off"
   }
 }

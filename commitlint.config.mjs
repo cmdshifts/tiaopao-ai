@@ -54,6 +54,9 @@ const commitType = [
   "style",
   "test",
   "setup",
+  "add",
+  "remove",
+  "update",
 ]
 
 export default config
