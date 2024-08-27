@@ -18,6 +18,81 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sfHello: ["SFHelloTH", "sans-serif"],
+      },
+      fontSize: {
+        "heading-xl": [
+          "2rem",
+          {
+            lineHeight: "auto",
+            fontWeight: "700",
+          },
+        ],
+        "heading-lg": [
+          "1.75rem",
+          {
+            lineHeight: "auto",
+            fontWeight: "700",
+          },
+        ],
+        "heading-md": [
+          "1.5rem",
+          {
+            lineHeight: "2.5rem",
+            fontWeight: "700",
+          },
+        ],
+        "heading-sm": [
+          "1.25rem",
+          {
+            lineHeight: "2.5rem",
+            fontWeight: "700",
+          },
+        ],
+        "subtitle-lg": [
+          "1rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "600",
+          },
+        ],
+        "subtitle-md": [
+          "0.875rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "600",
+          },
+        ],
+        "subtitle-sm": [
+          "0.75rem",
+          {
+            lineHeight: "0.625rem",
+            fontWeight: "600",
+          },
+        ],
+        "body-lg": [
+          "1rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "400",
+          },
+        ],
+        "body-md": [
+          "0.875rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "400",
+          },
+        ],
+        "body-sm": [
+          "0.75rem",
+          {
+            lineHeight: "0.625rem",
+            fontWeight: "500",
+          },
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
