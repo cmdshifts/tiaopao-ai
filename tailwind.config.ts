@@ -18,9 +18,6 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        sfHello: ["SFHelloTH", "sans-serif"],
-      },
       fontSize: {
         "heading-xl": [
           "2rem",

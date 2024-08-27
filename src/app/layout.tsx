@@ -2,6 +2,14 @@ import React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
+import { IBM_Plex_Sans_Thai } from "next/font/google"
+import { cn } from "@/lib/utils"
+
+const IBMPlexSansTH = IBM_Plex_Sans_Thai({
+  subsets: ["latin", "thai"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +24,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      className="dark"
       suppressHydrationWarning>
-      <body className={"font-sfHello"}>
+      <body className={cn(IBMPlexSansTH.className, "")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

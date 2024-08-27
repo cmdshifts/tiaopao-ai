@@ -2,54 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Thin.otf);
-}
-
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Light.otf);
-}
-
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Regular.otf);
-}
-
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Medium.otf);
-}
-
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Semibold.otf);
-}
-
-@font-face {
-  font-family: "SFHelloTH";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(/fonts/SFHelloTH-Bold.otf);
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
