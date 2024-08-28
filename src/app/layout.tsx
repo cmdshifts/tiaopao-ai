@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
+import { NotificationBar } from "@/components/customs/NotificationBar"
 import { IBM_Plex_Sans_Thai } from "next/font/google"
 import { cn } from "@/lib/utils"
 
@@ -24,13 +25,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="dark"
       suppressHydrationWarning>
       <body className={cn(IBMPlexSansTH.className, "")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem>
+          <NotificationBar isShow />
           {children}
         </ThemeProvider>
       </body>
