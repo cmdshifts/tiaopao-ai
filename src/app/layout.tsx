@@ -4,7 +4,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
 import { NotificationBar } from "@/components/customs/NotificationBar"
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/customs/Header"
 import { siteConfig } from "@/configs/site.config"
 
 export const metadata: Metadata = {
@@ -44,7 +43,6 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem>
           <NotificationBar isShow />
-          <Header />
           {children}
         </ThemeProvider>
       </body>
