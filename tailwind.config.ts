@@ -18,54 +18,57 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        seedSans: ["SeedSansTH", "sans-serif"],
+      },
       fontSize: {
         "heading-xl": [
           "2rem",
           {
             lineHeight: "auto",
-            fontWeight: "700",
+            fontWeight: "600",
           },
         ],
         "heading-lg": [
           "1.75rem",
           {
             lineHeight: "auto",
-            fontWeight: "700",
+            fontWeight: "600",
           },
         ],
         "heading-md": [
           "1.5rem",
           {
             lineHeight: "2.5rem",
-            fontWeight: "700",
+            fontWeight: "600",
           },
         ],
         "heading-sm": [
           "1.25rem",
           {
             lineHeight: "2.5rem",
-            fontWeight: "700",
+            fontWeight: "600",
           },
         ],
         "subtitle-lg": [
           "1rem",
           {
             lineHeight: "1.5rem",
-            fontWeight: "600",
+            fontWeight: "500",
           },
         ],
         "subtitle-md": [
           "0.875rem",
           {
             lineHeight: "1.5rem",
-            fontWeight: "600",
+            fontWeight: "500",
           },
         ],
         "subtitle-sm": [
           "0.75rem",
           {
             lineHeight: "0.625rem",
-            fontWeight: "600",
+            fontWeight: "500",
           },
         ],
         "body-lg": [

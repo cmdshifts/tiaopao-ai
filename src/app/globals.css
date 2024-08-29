@@ -59,6 +59,38 @@
   --main: 194.59 85.25% 42.55%;
 }
 
+@font-face {
+  font-family: "SeedSansTH";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/LINESeedSansTH_W_Rg.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SeedSansTH";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/LINESeedSansTH_W_Bd.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SeedSansTH";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/LINESeedSansTH_W_XBd.woff") format("woff");
+}
+
+@font-face {
+  font-family: "SeedSansTH";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/LINESeedSansTH_W_He.woff") format("woff");
+}
+
 @layer base {
   * {
     @apply border-border;

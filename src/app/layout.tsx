@@ -3,15 +3,9 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
 import { NotificationBar } from "@/components/customs/NotificationBar"
-import { IBM_Plex_Sans_Thai } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { Header } from "@/components/customs/Header"
 import { siteConfig } from "@/configs/site.config"
-
-const IBMPlexSansTH = IBM_Plex_Sans_Thai({
-  subsets: ["latin", "thai"],
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-})
 
 export const metadata: Metadata = {
   title: {
@@ -44,12 +38,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning>
-      <body className={cn(IBMPlexSansTH.className, "")}>
+      <body className={cn("font-seedSans", "")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem>
           <NotificationBar isShow />
+          <Header />
           {children}
         </ThemeProvider>
       </body>

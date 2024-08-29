@@ -1,5 +1,5 @@
 import React from "react"
-import { FaAngleRight } from "react-icons/fa"
+import { PiCaretDoubleRightBold } from "react-icons/pi"
 
 interface NotificationBarProps {
   isShow?: boolean
@@ -16,11 +16,11 @@ export const NotificationBar: React.FC<NotificationBarProps> = ({
             <div className="flex justify-center items-center gap-2 transition-all duration-200 ease-in-out">
               <div className="flex justify-center items-center gap-2">
                 <h6>🎉</h6>
-                <h6 className="text-background">
+                <h6 className="text-background text-subtitle-md">
                   ทริปเที่ยวป่าว? ให้เราช่วยวางแผนการท่องเที่ยวให้คุณ
                 </h6>
               </div>
-              <FaAngleRight className="text-background" />
+              <PiCaretDoubleRightBold className="text-background" />
             </div>
           </span>
         </div>
