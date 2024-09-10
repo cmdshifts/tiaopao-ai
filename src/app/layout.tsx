@@ -2,9 +2,7 @@ import React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
-import { NotificationBar } from "@/components/customs/NotificationBar"
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/customs/Header"
 import { siteConfig } from "@/configs/site.config"
 
 export const metadata: Metadata = {
@@ -16,14 +14,16 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        rel: "icon",
+        type: "image/svg+xml",
         media: "(prefers-color-scheme: light)",
         url: "/images/logo-dark.svg",
-        href: "/images/logo-dark.svg",
       },
       {
+        rel: "icon",
+        type: "image/svg+xml",
         media: "(prefers-color-scheme: dark)",
         url: "/images/logo.svg",
-        href: "/images/logo.svg",
       },
     ],
   },
@@ -37,14 +37,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      className="h-screen overflow-hidden"
       suppressHydrationWarning>
-      <body className={cn("font-seedSans", "")}>
+      <body
+        className={cn(
+          "font-seedSans",
+          "w-screen h-screen overflow-x-hidden overflow-y-auto"
+        )}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem>
-          <NotificationBar isShow />
-          <Header />
           {children}
         </ThemeProvider>
       </body>
