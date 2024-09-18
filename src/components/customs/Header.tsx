@@ -38,11 +38,13 @@ export const Header: React.FC = () => {
               size={"lg"}>
               เริ่มต้นใช้งาน
             </Button>
+            <Link href="/auth">
             <Button
               variant={"secondary"}
               size={"lg"}>
               ลงชื่อเข้าใช้
             </Button>
+            </Link>
           </div>
         </nav>
       </section>
