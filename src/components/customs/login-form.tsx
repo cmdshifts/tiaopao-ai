@@ -31,7 +31,7 @@ export const Login: React.FC = () => {
           </div>
           <Button className="bordor text-sm font-bold rounded-lg p-2.5 h-9 flex items-center justify-center gap-2">
           <Image src='/images/search.png' width={25} height={25} alt="logo"/>
-            Sign up with Google
+            Continue with Google
           </Button>
           <div className="relative">
             <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm text-gray-500 px-3">Or</span>
