@@ -9,5 +9,14 @@
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-no-target-blank": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/components/magicui/*.{js,jsx,ts,tsx}"],
+      "rules": {
+        "no-unused-vars": "off",
+        "react-hooks/exhaustive-deps": "off"
+      }
+    }
+  ]
 }
