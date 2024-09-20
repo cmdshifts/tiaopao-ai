@@ -9,7 +9,7 @@ export const Interesting: React.FC = () => {
         id="interesting"
         className="h-screen">
         <div>
-          <Link href="/interesting">
+          <Link href="/explore">
             <div className="flex justify-between items-center cursor-pointer p-4 pl-10 pr-10 shadow-lg transition transform hover:scale-105 hover:shadow-xl">
               <div>
                 <p className="text-xl">Interesting</p>

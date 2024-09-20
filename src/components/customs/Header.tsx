@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
         <nav className="flex justify-between items-center w-full max-w-[1200px] px-4 py-3 gap-6">
           <div className="flex justify-center items-center gap-4 cursor-pointer whitespace-nowrap hover:opacity-90 transition-opacity duration-200 ease-in-out">
             <Link
-              href="#"
+              href="/"
               className="flex justify-center items-center gap-4">
               <Logo className="w-9 h-9" />
               <h3 className="text-heading-sm">{siteConfig.name}</h3>
@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
           <div className="w-full">
             <ul className="flex justify-end items-center gap-5">
               <li>
-                <Link href="#interesting">สำรวจ</Link>
+                <Link href="/explore">สำรวจ</Link>
               </li>
               <li>
                 <Link href="#landmark">ที่ท่องเที่ยว</Link>

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/NextThemeProvider"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/configs/site.config"
 
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -44,10 +45,12 @@ export default function RootLayout({
           "font-seedSans",
           "w-screen h-screen overflow-x-hidden overflow-y-auto"
         )}>
+          
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem>
+          
           {children}
         </ThemeProvider>
       </body>
