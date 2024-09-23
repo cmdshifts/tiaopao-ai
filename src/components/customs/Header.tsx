@@ -9,7 +9,7 @@ import { NotificationBar } from "./NotificationBar"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 
-interface HeaderProps {
+interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   isNotification?: boolean
   showMenu?: boolean
   showActionButton?: boolean
@@ -21,12 +21,20 @@ export const Header: React.FC<HeaderProps> = ({
   showMenu = true,
   showActionButton = true,
   size = "md",
+  ...props
 }: HeaderProps) => {
   const router = useRouter()
+  const { className, ...rest } = props
+  const classNames = cn(
+    "z-50 fixed flex flex-col items-center justify-center w-full select-none",
+    className
+  )
 
   return (
     <>
-      <section className="z-50 fixed flex flex-col items-center justify-center w-full select-none ">
+      <section
+        className={classNames}
+        {...rest}>
         <NotificationBar isShow={isNotification} />
         <nav
           className={cn(
