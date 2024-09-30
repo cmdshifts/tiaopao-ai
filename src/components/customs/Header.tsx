@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
   )
 
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false)
-  const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(true)
+  const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false)
   const profileButtonRef = useRef<HTMLButtonElement>(null)
   const profileMenuRef = useRef<HTMLDivElement>(null)
   const navButtonRef = useRef<HTMLButtonElement>(null)
