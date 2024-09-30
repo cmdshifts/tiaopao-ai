@@ -76,6 +76,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       await userRef.set({
         email: user.email,
         name: user.name || null,
+        image: user.image || null,
         username: user.email?.substring(0, user.email?.indexOf("@")),
         role: "user",
       })
