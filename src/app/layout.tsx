@@ -4,6 +4,10 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/providers/NextThemeProvider"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/configs/site.config"
+import { SessionProvider } from "@/components/providers/SessionProvider"
+import { auth } from "@/services/auth"
+import { Toaster } from "@/components/ui/toaster"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: {
@@ -29,26 +33,32 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
+
   return (
     <html
       lang="en"
-      className="h-screen overflow-hidden"
+      className="w-screen h-screen overflow-hidden"
       suppressHydrationWarning>
       <body
         className={cn(
           "font-seedSans",
-          "w-screen h-screen overflow-x-hidden overflow-y-auto"
+          "w-screen h-screen overflow-x-hidden overflow-y-hidden scrollbar-hide"
         )}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem>
-          {children}
+          <SessionProvider session={session}>
+            <SpeedInsights />
+            {children}
+            <Toaster />
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

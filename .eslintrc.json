@@ -12,7 +12,11 @@
   },
   "overrides": [
     {
-      "files": ["src/components/magicui/*.{js,jsx,ts,tsx}"],
+      "files": [
+        "src/components/magicui/*.{js,jsx,ts,tsx}",
+        "src/hooks/*.{js,jsx,ts,tsx}",
+        "src/types/*.{js,jsx,ts,tsx}"
+      ],
       "rules": {
         "no-unused-vars": "off",
         "react-hooks/exhaustive-deps": "off"

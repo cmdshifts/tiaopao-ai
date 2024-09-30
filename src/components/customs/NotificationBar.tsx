@@ -16,7 +16,7 @@ export const NotificationBar: React.FC<NotificationBarProps> = ({
             <div className="flex justify-center items-center gap-2 transition-all duration-200 ease-in-out">
               <div className="flex justify-center items-center gap-2">
                 <h6>🎉</h6>
-                <h6 className="text-background text-subtitle-md">
+                <h6 className="text-background text-subtitle-md truncate max-w-[310px] break-all">
                   ทริปเที่ยวป่าว? ให้เราช่วยวางแผนการท่องเที่ยวให้คุณ
                 </h6>
               </div>

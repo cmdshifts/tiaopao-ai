@@ -15,12 +15,12 @@ export const Introduction: React.FC = () => {
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-6">
           <span className="flex">
-            <h1 className="text-[2.5rem] font-semibold text-center">
+            <h1 className="font-semibold text-center text-heading-sm sm:text-heading-md md:text-heading-lg lg:text-heading-xl xl:text-[2.5rem]">
               ค้นพบการผจญภัยใหม่ด้วยแผนการท่องเที่ยวที่{" "}
               <span>ออกแบบเฉพาะสำหรับคุณ</span>
             </h1>
           </span>
-          <Button>เริ่มต้นใช้งาน</Button>
+          <Button>เร็ว ๆ นี้</Button>
         </div>
         <GridPattern
           width={60}

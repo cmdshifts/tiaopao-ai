@@ -3,14 +3,21 @@ import { cn } from "@/lib/utils"
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern"
 import { Header } from "@/components/customs/Header"
 import { Footer } from "@/components/customs/Footer"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { AuthModal } from "@/components/customs/AuthModal"
+import { Backpack } from "@/components/models/Backpack"
+import { ModelCanvas } from "@/components/models/ModelCanvas"
+import { auth } from "@/services/auth"
+import { redirect } from "next/navigation"
 
-export default function Auth() {
+export default async function Auth() {
+  const session = await auth()
+  if (session) {
+    redirect("/")
+  }
+
   return (
     <>
-      <main>
+      <main className="h-screen max-h-screen overflow-hidden">
         <section className="w-full h-screen flex flex-col flex-1">
           <Header
             isNotification={false}
@@ -20,39 +27,15 @@ export default function Auth() {
             className="relative"
           />
           <div className="flex justify-center items-center flex-1 h-full w-full">
-            <div className="grid grid-cols-2 gap-4 p-4 max-w-[1400px] h-full w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 max-w-[1400px] h-full w-full">
               <div className="flex items-center justify-center">
-                <Card className="flex justify-center items-center h-auto w-[420px] shadow-md p-6">
-                  <form className="w-full">
-                    <div className="grid gap-6">
-                      <div className="space-y-2">
-                        <h1 className="text-heading-lg">เดินทางร่วมกับเรา</h1>
-                        <p className="text-sm text-gray-500">
-                          เริ่มต้นการเดินทางของคุณด้วยการสร้างบัญชี
-                        </p>
-                      </div>
-                      <Button>ดำเนินการต่อด้วย Google</Button>
-                      <div className="relative">
-                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm text-gray-500 px-3">
-                          หรือ
-                        </span>
-                      </div>
-                      <div className="grid gap-3">
-                        <div className="relative">
-                          <span className="text-gray-500 absolute top-1/2 left-3 transform -translate-y-1/2"></span>
-                          <Input
-                            type="email"
-                            className="w-full border border-gray-200 p-2.5 h-9 rounded-lg placeholder:text-sm"
-                            placeholder="username@email.com"
-                          />
-                        </div>
-                        <Button>ดำเนินการต่อด้วยอีเมล</Button>
-                      </div>
-                    </div>
-                  </form>
-                </Card>
+                <AuthModal />
               </div>
-              <div className="flex items-center justify-center text-xl"></div>
+              <div className="hidden items-center justify-center text-xl lg:block">
+                <ModelCanvas className="absolute top-0 left-0 w-full h-full">
+                  <Backpack />
+                </ModelCanvas>
+              </div>
             </div>
           </div>
           <Footer />
@@ -64,7 +47,10 @@ export default function Auth() {
           repeatDelay={1}
           className={cn(
             "[mask-image:radial-gradient(700px_circle_at_right,white,transparent)]",
-            "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12 -z-30"
+            "inset-x-0 h-full skew-y-12 -z-30",
+            "sm:inset-y-0 sm:h-full",
+            "md:inset-y-[-10%] md:h-full",
+            "lg:inset-y-[-20%] lg:h-full"
           )}
         />
       </main>

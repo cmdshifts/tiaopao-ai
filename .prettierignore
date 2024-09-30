@@ -3,3 +3,7 @@
 
 # lock files
 pnpm-lock.yaml
+
+# types and hooks
+/src/types/
+/src/hooks/

@@ -47,7 +47,7 @@
   --muted-foreground: 240 5% 64.9%;
   --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
-  --destructive: 340.09 89.17% 47.06%;
+  --destructive: 339.9 91.39% 40.98%;
   --destructive-foreground: 0 0% 98%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
@@ -101,6 +101,17 @@
     @apply bg-background text-foreground scroll-smooth;
   }
 }
+
+@layer utilities {
+  .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(100%);
