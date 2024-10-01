@@ -19,15 +19,15 @@ export const metadata: Metadata = {
     icon: [
       {
         rel: "icon",
-        type: "image/svg+xml",
+        type: "image/png",
         media: "(prefers-color-scheme: light)",
-        url: "/images/logo-dark.svg",
+        url: "/images/png/logo-dark.png",
       },
       {
         rel: "icon",
-        type: "image/svg+xml",
+        type: "image/png",
         media: "(prefers-color-scheme: dark)",
-        url: "/images/logo.svg",
+        url: "/images/png/logo.png",
       },
     ],
   },

@@ -14,12 +14,11 @@ import * as React from "react"
 interface VerificationEmailTemplateProps {
   email: string
   url: string
-  host: string
 }
 
 export const VerificationEmail: React.FC<
   Readonly<VerificationEmailTemplateProps>
-> = ({ email, url, host }) => (
+> = ({ email, url }) => (
   <Html>
     <Head />
     <Preview>Log in with this magic link</Preview>
@@ -56,7 +55,7 @@ export const VerificationEmail: React.FC<
           account.
         </Text>
         <Img
-          src={`${host}/images/logo-large.svg`}
+          src={`https://triptiaopao.com/images/svg/logo-large-color.svg`}
           height="32"
           alt="TripTiaoPao"
         />
