@@ -5,7 +5,6 @@ import { Button } from "../ui/button"
 import { siteConfig } from "@/configs/site.config"
 import Link from "next/link"
 import { NotificationBar } from "./NotificationBar"
-import { useRouter } from "next/navigation"
 import { cn, getInitials } from "@/lib/utils"
 import { signOut, useSession } from "next-auth/react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -40,7 +39,6 @@ export const Header: React.FC<HeaderProps> = ({
   blur,
   ...props
 }: HeaderProps) => {
-  const router = useRouter()
   const { className, ...rest } = props
   const classNames = cn(
     "z-50 absolute flex flex-col items-center justify-center w-full select-none transition-all duration-200 ease-in-out",
@@ -112,11 +110,13 @@ export const Header: React.FC<HeaderProps> = ({
             "flex justify-between items-center w-full max-w-[1400px] px-4 gap-6",
             `${size === "sm" ? "py-3" : size === "lg" ? "py-8 px-8" : "py-3"}`
           )}>
-          <div
-            className="flex justify-center items-center gap-4 cursor-pointer whitespace-nowrap hover:opacity-90 transition-opacity duration-200 ease-in-out"
-            onClick={() => router.push("/")}>
-            <Logo className="w-9 h-9" />
-            <h3 className="text-heading-sm">{siteConfig.name}</h3>
+          <div className="flex justify-center items-center gap-4 cursor-pointer whitespace-nowrap hover:opacity-90 transition-opacity duration-200 ease-in-out">
+            <Link
+              href={"/"}
+              className="flex justify-center items-center gap-4 w-full h-full">
+              <Logo className="w-9 h-9" />
+              <h3 className="text-heading-sm">{siteConfig.name}</h3>
+            </Link>
           </div>
           <div className="flex items-center justify-end gap-4">
             {showMenu && (
@@ -207,14 +207,17 @@ export const Header: React.FC<HeaderProps> = ({
                       </div>
                     </>
                   ) : (
-                    <Button
-                      variant={"secondary"}
-                      size={"lg"}
-                      onClick={() => router.push("/auth")}
-                      className="flex items-center justify-center gap-2">
-                      <RiFingerprintFill />
-                      ลงชื่อเข้าใช้
-                    </Button>
+                    <Link
+                      href={"/auth"}
+                      className="flex justify-center items-center gap-2">
+                      <Button
+                        variant={"secondary"}
+                        size={"lg"}
+                        className="flex items-center justify-center gap-2">
+                        <RiFingerprintFill />
+                        <p>ลงชื่อเข้าใช้</p>
+                      </Button>
+                    </Link>
                   )}
                 </div>
                 <div className="relative block lg:hidden">
@@ -229,6 +232,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                   {isNavMenuOpen && (
                     <div
+                      h-full
                       ref={navMenuRef}
                       className="absolute right-0 pt-2 w-56 block">
                       <ul className="bg-primary-foreground rounded-lg shadow-sm border border-gray-500/20 p-1 [&>li]:rounded-sm flex flex-col gap-1 [&>li]:transition-all [&>li]:duration-200 [&>li]:ease-in-out">
@@ -311,11 +315,13 @@ export const Header: React.FC<HeaderProps> = ({
                                 <RiBardFill />
                                 <p>เริ่มต้นใช้งาน</p>
                               </li>
-                              <li
-                                className="px-4 py-2 hover:bg-gray-500/15 cursor-pointer flex items-center gap-2"
-                                onClick={() => router.push("/auth")}>
-                                <RiFingerprintFill />
-                                <p>ลงชื่อเข้าใช้</p>
+                              <li className="px-4 py-2 hover:bg-gray-500/15 cursor-pointer flex items-center gap-2">
+                                <Link
+                                  href={"/auth"}
+                                  className="flex items-center gap-2 w-full h-full">
+                                  <RiFingerprintFill />
+                                  <p>ลงชื่อเข้าใช้</p>
+                                </Link>
                               </li>
                             </>
                           )}

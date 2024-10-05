@@ -50,7 +50,7 @@ export const ScrollLayout: React.FC<ScrollLayoutProps> = ({ children }) => {
         <div
           ref={scrollContainerRef}
           className="w-screen h-screen overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
-          <div className="flex flex-col w-screen">{children}</div>
+          {children}
         </div>
       </main>
     </>
