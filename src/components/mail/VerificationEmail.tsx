@@ -1,124 +1,136 @@
 import {
   Body,
-  Container,
-  Head,
-  Heading,
   Html,
   Img,
-  Link,
   Preview,
   Text,
+  Section,
+  Hr,
+  Button,
 } from "@react-email/components"
 import * as React from "react"
+import { CSSProperties } from "react"
 
 interface VerificationEmailTemplateProps {
-  email: string
   url: string
 }
 
 export const VerificationEmail: React.FC<
   Readonly<VerificationEmailTemplateProps>
-> = ({ email, url }) => (
+> = ({ url }) => (
   <Html>
-    <Head />
-    <Preview>Log in with this magic link</Preview>
+    <Preview>สวัสดีนักเดินทาง! 👋</Preview>
     <Body style={main}>
-      <Container style={container}>
-        <Heading style={h1}>Login to {email}</Heading>
-        <Link
-          href={url}
-          target="_blank"
-          style={{
-            ...link,
-            display: "block",
-            marginBottom: "16px",
-          }}>
-          Click here to log in with this magic link
-        </Link>
-        <Text
-          style={{
-            ...text,
-            color: "#ababab",
-            marginTop: "14px",
-            marginBottom: "16px",
-          }}>
-          If you didn&apos;t try to login, you can safely ignore this email.
-        </Text>
-        <Text
-          style={{
-            ...text,
-            color: "#ababab",
-            marginTop: "12px",
-            marginBottom: "38px",
-          }}>
-          Hint: You can set a permanent password in Settings & members → My
-          account.
-        </Text>
+      <Section style={containerSection}>
         <Img
-          src={`https://triptiaopao.com/images/svg/logo-large-color.svg`}
-          height="32"
+          style={logoLarge}
           alt="TripTiaoPao"
+          height="40"
+          src="https://triptiaopao.com/images/png/logo-large-color.png"
         />
-        <Text style={footer}>
-          <Link
-            href="https://triptiaopao.com"
-            target="_blank"
-            style={{ ...link, color: "#898989" }}>
-            Triptiaopao.com
-          </Link>
-          , the all-in-one-workspace
-          <br />
-          for your notes, tasks, wikis, and databases.
+        <Hr style={divider} />
+        <Section style={mainSection}>
+          <Img
+            alt="Scenic View Of Ocean by Humphrey Muleba"
+            style={image}
+            height="160"
+            src="https://triptiaopao.com/png/scenic-view-of-ocean.png"
+          />
+          <Text style={textLabel}>การผจญภัยครั้งใหม่รอคุณอยู่!</Text>
+          <Text style={textDescription}>
+            เวลาสำหรับการออกเดินทางมาแล้ว!
+            คุณสามารถเข้าสู่ระบบและสร้างเส้นทางการเดินทางที่ตอบโจทย์ทุกฝันของคุณได้ทันที
+            พร้อมที่จะออกค้นพบสิ่งใหม่ ๆ หรือยัง? 🧳
+          </Text>
+          <Button
+            style={button}
+            href={url}>
+            ✈️ ออกเดินทาง!
+          </Button>
+          <Text style={textWarning}>
+            หากท่านไม่ได้ทำการร้องขอดังกล่าว กรุณาเพิกเฉยต่ออีเมลฉบับนี้
+          </Text>
+        </Section>
+        <Hr style={divider} />
+        <Text style={footerDescription}>
+          © 2024 TripTiaoPao.com. All Rights Reserved.
         </Text>
-      </Container>
+      </Section>
     </Body>
   </Html>
 )
 
 export default VerificationEmail
 
-const main = {
+const main: CSSProperties = {
   backgroundColor: "#ffffff",
 }
 
-const container = {
-  paddingLeft: "12px",
-  paddingRight: "12px",
-  margin: "0 auto",
+const containerSection: CSSProperties = {
+  marginTop: "16px",
+  marginBottom: "16px",
+  maxWidth: "450px",
 }
 
-const h1 = {
-  color: "#333",
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: "24px",
-  fontWeight: "bold",
-  margin: "40px 0",
-  padding: "0",
+const image: CSSProperties = {
+  width: "100%",
+  borderRadius: "12px",
+  objectFit: "cover",
 }
 
-const link = {
-  color: "#2754C5",
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: "14px",
-  textDecoration: "underline",
+const mainSection: CSSProperties = {
+  marginTop: "32px",
+  textAlign: "center",
 }
 
-const text = {
-  color: "#333",
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: "14px",
-  margin: "24px 0",
+const textLabel: CSSProperties = {
+  marginTop: "16px",
+  marginBottom: "16px",
+  fontSize: "18px",
+  fontWeight: "600",
+  lineHeight: "28px",
 }
 
-const footer = {
-  color: "#898989",
-  fontFamily:
-    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+const logoLarge: CSSProperties = {
+  alignSelf: "center",
+}
+
+const textDescription: CSSProperties = {
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#6B7280",
+}
+
+const button: CSSProperties = {
+  marginTop: "16px",
+  padding: "12px 40px",
+  borderRadius: "8px",
+  backgroundColor: "#2E9CC9",
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#ffffff",
+  display: "inline-block",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background-color 0.3s",
+}
+
+const textWarning: CSSProperties = {
+  marginTop: "8px",
   fontSize: "12px",
-  lineHeight: "22px",
-  marginTop: "12px",
-  marginBottom: "24px",
+  color: "#6B7280",
+}
+
+const divider = {
+  width: "100%",
+  border: "none",
+  borderTop: "1px solid #eaeaea",
+  marginTop: "16px",
+  marginBottom: "16px",
+  borderColor: "rgb(209,213,219)",
+  borderBottomWidth: "2px",
+}
+
+const footerDescription: CSSProperties = {
+  fontSize: "12px",
 }

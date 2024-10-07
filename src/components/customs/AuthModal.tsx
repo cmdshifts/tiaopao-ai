@@ -12,7 +12,7 @@ import { isValidEmail } from "@/lib/utils"
 
 export const AuthModal = () => {
   const { toast } = useToast()
-  const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = useState<boolean>(true)
+  const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = useState<boolean>(false)
 
   const handleResendSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitBtnDisabled(true)

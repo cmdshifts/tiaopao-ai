@@ -12,8 +12,8 @@ export async function authSendRequest(params: {
   const { error } = await resend.emails.send({
     from: from!,
     to: email,
-    subject: "🎉 เตรียมตัวให้พร้อม! ประตูสู่การผจญภัยของคุณเปิดแล้ว!",
-    react: VerificationEmail({ email, url }),
+    subject: "✨ ประตูสู่การผจญภัยของคุณเปิดแล้ว!",
+    react: VerificationEmail({ url }),
   })
 
   if (error) {
