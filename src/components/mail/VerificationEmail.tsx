@@ -34,7 +34,7 @@ export const VerificationEmail: React.FC<
             alt="Scenic View Of Ocean by Humphrey Muleba"
             style={image}
             height="160"
-            src="https://triptiaopao.com/png/scenic-view-of-ocean.png"
+            src="https://triptiaopao.com/images/png/scenic-view-of-ocean.jpg"
           />
           <Text style={textLabel}>การผจญภัยครั้งใหม่รอคุณอยู่!</Text>
           <Text style={textDescription}>
