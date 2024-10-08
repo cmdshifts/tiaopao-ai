@@ -84,6 +84,7 @@ const mainSection: CSSProperties = {
 }
 
 const textLabel: CSSProperties = {
+  color: "#000000",
   marginTop: "16px",
   marginBottom: "16px",
   fontSize: "18px",
@@ -132,5 +133,6 @@ const divider = {
 }
 
 const footerDescription: CSSProperties = {
+  color: "#000000",
   fontSize: "12px",
 }
