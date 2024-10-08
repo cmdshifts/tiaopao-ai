@@ -95,7 +95,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border box-border;
   }
   body {
     @apply bg-background text-foreground scroll-smooth;
@@ -109,6 +109,11 @@
     }
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .h-full-svh {
+    height: 100vh;
+    height: 100svh;
   }
 }
 

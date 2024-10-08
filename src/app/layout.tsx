@@ -43,12 +43,12 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className="w-screen h-screen overflow-hidden"
+      className="w-screen h-screen h-full-svh overflow-hidden"
       suppressHydrationWarning>
       <body
         className={cn(
           "font-seedSans",
-          "w-screen h-screen overflow-x-hidden overflow-y-hidden scrollbar-hide"
+          "w-screen h-screen overflow-x-hidden overflow-y-hidden scrollbar-hide h-full-svh"
         )}>
         <ThemeProvider
           attribute="class"

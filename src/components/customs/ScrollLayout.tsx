@@ -42,14 +42,14 @@ export const ScrollLayout: React.FC<ScrollLayoutProps> = ({ children }) => {
 
   return (
     <>
-      <main className="h-screen overflow-hidden">
+      <main className="h-screen h-full-svh overflow-hidden">
         <Header
           opacity={headerOpacity}
           blur={headerBlur}
         />
         <div
           ref={scrollContainerRef}
-          className="w-screen h-screen overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
+          className="w-screen h-screen h-full-svh overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
           {children}
         </div>
       </main>
