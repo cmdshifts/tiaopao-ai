@@ -28,7 +28,7 @@ export const Introduction: React.FC = () => {
           </AnimatedGradientText>
           <h1 className="mx-auto max-w-7xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl text-center leading-[4rem] sm:leading-[5rem]">
             สร้าง{" "}
-            <span className="relative whitespace-nowrap text-urquoise dark:text-darkTurquoise">
+            <span className="relative whitespace-nowrap text-turquoise dark:text-darkTurquoise">
               การเดินทาง
               <Highlight />
             </span>{" "}
