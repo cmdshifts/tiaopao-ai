@@ -8,7 +8,6 @@ export default async function AccountLayout({
   children,
 }: {
   children: React.ReactNode
-  pathname: string
 }) {
   return (
     <>
