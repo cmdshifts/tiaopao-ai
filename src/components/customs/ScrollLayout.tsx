@@ -4,9 +4,13 @@ import { Header } from "./Header"
 
 interface ScrollLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
+  isHeaderMenu?: boolean
 }
 
-export const ScrollLayout: React.FC<ScrollLayoutProps> = ({ children }) => {
+export const ScrollLayout: React.FC<ScrollLayoutProps> = ({
+  children,
+  isHeaderMenu = true,
+}) => {
   const [headerOpacity, setHeaderOpacity] = useState(0)
   const [headerBlur, setHeaderBlur] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -46,6 +50,7 @@ export const ScrollLayout: React.FC<ScrollLayoutProps> = ({ children }) => {
         <Header
           opacity={headerOpacity}
           blur={headerBlur}
+          showMenu={isHeaderMenu}
         />
         <div
           ref={scrollContainerRef}

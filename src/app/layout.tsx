@@ -1,7 +1,7 @@
 import React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { ThemeProvider } from "@/components/providers/NextThemeProvider"
+import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/configs/site.config"
 import { SessionProvider } from "@/components/providers/SessionProvider"
@@ -15,22 +15,6 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  icons: {
-    icon: [
-      {
-        rel: "icon",
-        type: "image/png",
-        media: "(prefers-color-scheme: light)",
-        url: "/images/png/logo-dark.png",
-      },
-      {
-        rel: "icon",
-        type: "image/png",
-        media: "(prefers-color-scheme: dark)",
-        url: "/images/png/logo.png",
-      },
-    ],
-  },
 }
 
 export default async function RootLayout({
@@ -49,11 +33,9 @@ export default async function RootLayout({
         className={cn(
           "font-seedSans",
           "w-screen h-screen overflow-x-hidden overflow-y-hidden scrollbar-hide h-full-svh"
-        )}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem>
+        )}
+        suppressHydrationWarning>
+        <ThemeProvider>
           <SessionProvider session={session}>
             <SpeedInsights />
             {children}

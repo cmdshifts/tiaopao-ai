@@ -28,3 +28,29 @@ export function isValidEmail(email: string): boolean {
 
   return emailRegex.test(email)
 }
+
+export const cropImageToSquare = (image: HTMLImageElement): string => {
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext("2d")
+
+  const sideLength = Math.min(image.width, image.height)
+  canvas.width = sideLength
+  canvas.height = sideLength
+
+  const xOffset = (image.width - sideLength) / 2
+  const yOffset = (image.height - sideLength) / 2
+
+  ctx?.drawImage(
+    image,
+    xOffset,
+    yOffset,
+    sideLength,
+    sideLength,
+    0,
+    0,
+    sideLength,
+    sideLength
+  )
+
+  return canvas.toDataURL("image/jpeg")
+}

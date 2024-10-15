@@ -98,7 +98,7 @@
     @apply border-border box-border;
   }
   body {
-    @apply bg-background text-foreground scroll-smooth;
+    @apply bg-background text-foreground scroll-smooth transition-all duration-200 ease-in-out;
   }
 }
 
@@ -112,7 +112,6 @@
   }
 
   .h-full-svh {
-    height: 100vh;
     height: 100svh;
   }
 }

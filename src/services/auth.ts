@@ -8,16 +8,16 @@ import { authSendRequest } from "@/lib/authSendRequest"
 import { getFirestore } from "firebase-admin/firestore"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     Google({
-      clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
-      clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
     Resend({
-      apiKey: process.env.AUTH_RESEND_API_KEY,
-      from: process.env.AUTH_RESEND_EMAIL_FROM,
+      apiKey: process.env.NEXT_PUBLIC_RESEND_API_KEY,
+      from: process.env.NEXT_PUBLIC_RESEND_EMAIL_FROM,
       async sendVerificationRequest({
         identifier: email,
         url,
@@ -37,9 +37,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   adapter: FirestoreAdapter({
     credential: cert({
-      projectId: process.env.AUTH_FIREBASE_PROJECT_ID,
-      clientEmail: process.env.AUTH_FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.AUTH_FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY!.replace(
+        /\\n/g,
+        "\n"
+      ),
     }),
   }),
   callbacks: {
@@ -74,6 +77,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const userRef = db.collection("users").doc(user.id!)
 
       await userRef.set({
+        id: user.id,
         email: user.email,
         name: user.name || null,
         image: user.image || null,

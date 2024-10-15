@@ -6,7 +6,7 @@ export async function authSendRequest(params: {
   url: string
   from: string | undefined
 }) {
-  const resend = new Resend(process.env.AUTH_RESEND_API_KEY)
+  const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
   const { email, url, from } = params
 
   const { error } = await resend.emails.send({

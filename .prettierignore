@@ -7,3 +7,6 @@ pnpm-lock.yaml
 # types and hooks
 /src/types/
 /src/hooks/
+
+# components
+/src/components/

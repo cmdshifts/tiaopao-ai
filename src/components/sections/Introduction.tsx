@@ -11,7 +11,9 @@ import WordPullUp from "../ui/word-pull-up"
 export const Introduction: React.FC = () => {
   return (
     <>
-      <section className="relative w-screen h-screen h-full-svh">
+      <section
+        id="#introduction"
+        className="relative w-screen h-screen h-full-svh">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="grey"
@@ -35,7 +37,7 @@ export const Introduction: React.FC = () => {
             <span className="whitespace-nowrap">สำหรับคุณ</span>
           </h1>
           <WordPullUp
-            className="mx-auto max-w-2xl font-normal text-lg tracking-tight text-foreground text-center text-balance"
+            className="mx-auto max-w-2xl font-normal text-lg tracking-tight text-foreground text-center text-balance text-gray-700 dark:text-gray-300"
             words="ปลดล็อกโลกแห่งการเดินทางด้วยแผนการเดินทางเฉพาะคุณ รับแรงบันดาลใจจากแผนทริปสุดพิเศษและออกแบบการผจญภัยที่สมบูรณ์แบบ ถึงเวลาสร้างทริปที่น่าจดจำของคุณแล้ว"
           />
           <Button size={"lg"}>เร็ว ๆ นี้</Button>

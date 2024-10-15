@@ -13,7 +13,7 @@
   "overrides": [
     {
       "files": [
-        "src/components/magicui/*.{js,jsx,ts,tsx}",
+        "src/components/**/*.{js,jsx,ts,tsx}",
         "src/hooks/*.{js,jsx,ts,tsx}",
         "src/types/*.{js,jsx,ts,tsx}"
       ],
