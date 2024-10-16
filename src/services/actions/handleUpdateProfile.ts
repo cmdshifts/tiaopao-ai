@@ -1,5 +1,5 @@
 export default async function handleUpdateProfile(data: Record<string, any>) {
-  const response = await fetch("http://localhost:3000/api/account", {
+  const response = await fetch("/api/account", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
