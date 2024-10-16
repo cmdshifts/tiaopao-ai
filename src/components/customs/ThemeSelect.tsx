@@ -11,10 +11,10 @@ import { RiMacbookLine, RiMoonLine, RiSunLine } from "react-icons/ri"
 import { useTheme } from "next-themes"
 
 export const ThemeSelect = () => {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   const [selectedTheme, setSelectedTheme] = useState<string>(
-    resolvedTheme || "system"
+    theme || "system"
   )
   const [mounted, setMounted] = useState<boolean>(false)
 
