@@ -44,6 +44,9 @@ jobs:
         with:
           version: ${{ matrix.pnpm-version }}
 
+      - name: Set Node memory limit
+        run: export NODE_OPTIONS=--max-old-space-size=512
+
       - name: Install dependencies
         run: pnpm install
 
