@@ -4,8 +4,6 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
 
-export const runtime = "edge"
-
 const seedSansBold = fetch(
   new URL("../../../assets/fonts/LINESeedSansTH_W_XBd.woff", import.meta.url)
 ).then((res) => res.arrayBuffer())
