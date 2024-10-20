@@ -3,24 +3,46 @@
 // @ts-nocheck
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
+import { promises as fs } from "fs"
+import path from "path"
 
-const seedSansBold = fetch(
-  new URL("../../../assets/fonts/LINESeedSansTH_W_XBd.woff", import.meta.url)
-).then((res) => res.arrayBuffer())
+// const seedSansBold = fetch(
+//   new URL("../../../assets/fonts/LINESeedSansTH_W_XBd.woff", import.meta.url)
+// ).then((res) => res.arrayBuffer())
 
-const image = fetch(
-  new URL("../../../assets/images/background.png", import.meta.url)
-).then((res) => res.arrayBuffer())
+// const image = fetch(
+//   new URL("../../../assets/images/background.png", import.meta.url)
+// ).then((res) => res.arrayBuffer())
 
-const logo = fetch(
-  new URL("../../../assets/images/logo.png", import.meta.url)
-).then((res) => res.arrayBuffer())
+// const logo = fetch(
+//   new URL("../../../assets/images/logo.png", import.meta.url)
+// ).then((res) => res.arrayBuffer())
 
 export async function GET(req: NextRequest) {
   try {
-    const fontBold = await seedSansBold
-    const backgroundImage = await image
-    const logoImage = await logo
+    // Resolve image and font paths
+    const logoImagePath = path.resolve(
+      process.cwd(),
+      "public/images/png/logo-large.png"
+    )
+    const backgroundImagePath = path.resolve(
+      process.cwd(),
+      "public/images/png/background.png"
+    )
+    const fontPath = path.resolve(
+      process.cwd(),
+      "public/fonts/LINESeedSansTH_W_XBd.woff"
+    )
+
+    // Read images and font as base64 strings
+    const logoImage = await fs.readFile(logoImagePath)
+    const backgroundImage = await fs.readFile(backgroundImagePath)
+    const fontData = await fs.readFile(fontPath)
+
+    const logoBase64 = `data:image/png;base64,${logoImage.toString("base64")}`
+    const backgroundBase64 = `data:image/png;base64,${backgroundImage.toString(
+      "base64"
+    )}`
 
     const { searchParams } = new URL(req.url)
     const hasTitle = searchParams.has("title")
@@ -35,12 +57,12 @@ export async function GET(req: NextRequest) {
         <>
           <div tw="flex flex-col w-full h-full min-h-full bg-white">
             <img
-              src={backgroundImage}
-              tw="absolute w-full h-full object-contain"
+              src={backgroundBase64}
+              tw="absolute w-full h-full"
             />
             <div tw="w-full h-full flex flex-col flex-1 p-24 justify-between">
               <img
-                src={logoImage}
+                src={logoBase64}
                 tw="h-[64px]"
               />
               <h2 tw="flex flex-col text-7xl">
@@ -57,7 +79,7 @@ export async function GET(req: NextRequest) {
         fonts: [
           {
             name: "LINE Seed Sans TH",
-            data: fontBold,
+            data: fontData,
             weight: 800,
             style: "normal",
           },
