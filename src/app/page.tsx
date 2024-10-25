@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
+    siteName: siteConfig.name,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og`,
