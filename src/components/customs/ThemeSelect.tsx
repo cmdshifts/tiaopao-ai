@@ -13,9 +13,7 @@ import { useTheme } from "next-themes"
 export const ThemeSelect = () => {
   const { theme, setTheme } = useTheme()
 
-  const [selectedTheme, setSelectedTheme] = useState<string>(
-    theme || "system"
-  )
+  const [selectedTheme, setSelectedTheme] = useState<string>(theme || "system")
   const [mounted, setMounted] = useState<boolean>(false)
 
   const handleSelectChange = (value: string) => {
