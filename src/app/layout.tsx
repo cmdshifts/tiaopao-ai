@@ -15,6 +15,40 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: [
+      {
+        url: "/images/svg/logo-dark.svg",
+        sizes: "192x192",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+        href: "/images/svg/logo-dark.svg",
+      },
+      {
+        url: "/images/svg/logo.svg",
+        sizes: "192x192",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+        href: "/images/svg/logo.svg",
+      },
+    ],
+    apple: [
+      {
+        url: "/images/png/logo-dark.png",
+        sizes: "192x192",
+        type: "image/png",
+        media: "(prefers-color-scheme: light)",
+        href: "/images/png/logo-dark.png",
+      },
+      {
+        url: "/images/png/logo.png",
+        sizes: "192x192",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+        href: "/images/png/logo.png",
+      },
+    ],
+  },
 }
 
 export default async function RootLayout({
@@ -27,12 +61,12 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className="w-screen h-screen h-full-svh overflow-hidden"
+      className="relative w-screen h-screen h-full-svh scrollbar-hide"
       suppressHydrationWarning>
       <body
         className={cn(
           "font-seedSans",
-          "w-screen h-screen overflow-x-hidden overflow-y-hidden scrollbar-hide h-full-svh"
+          "w-screen h-screen overflow-x-hidden overflow-y-auto scrollbar-hide h-full-svh"
         )}
         suppressHydrationWarning>
         <ThemeProvider>

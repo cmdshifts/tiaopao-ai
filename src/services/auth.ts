@@ -8,6 +8,7 @@ import { authSendRequest } from "@/lib/authSendRequest"
 import { getFirestore } from "firebase-admin/firestore"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
   secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     Google({

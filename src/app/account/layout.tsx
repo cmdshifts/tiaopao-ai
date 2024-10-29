@@ -16,8 +16,6 @@ export default async function AccountLayout({
         isNotification={false}
         showMenu={false}
         className="shadow-sm [&>nav]:py-4"
-        opacity={0.75}
-        blur={10}
       />
       <div className="pt-[64px] w-screen h-screen h-full-svh flex flex-col items-center overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
         <div className="h-full">

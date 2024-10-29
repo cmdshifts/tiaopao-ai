@@ -1,6 +1,7 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef } from "react"
 import { Header } from "./Header"
+import { useScroll, useTransform } from "framer-motion"
 
 interface ScrollLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -11,48 +12,34 @@ export const ScrollLayout: React.FC<ScrollLayoutProps> = ({
   children,
   isHeaderMenu = true,
 }) => {
-  const [headerOpacity, setHeaderOpacity] = useState(0)
-  const [headerBlur, setHeaderBlur] = useState(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current
+  const { scrollY } = useScroll({
+    container: scrollContainerRef,
+  })
 
-    const handleScroll = () => {
-      if (!scrollContainer) return
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 40],
+    ["hsla(var(--background) / 0)", "hsla(var(--background) / 0.65)"]
+  )
 
-      const scrollTop = scrollContainer.scrollTop
-      const maxScroll = 20
-
-      if (scrollTop > maxScroll) {
-        setHeaderOpacity(0.75)
-        setHeaderBlur(10)
-      } else {
-        setHeaderOpacity(0)
-        setHeaderBlur(0)
-      }
-    }
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll)
-    }
-
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener("scroll", handleScroll)
-      }
-    }
-  }, [])
+  const backgroundBlur = useTransform(
+    scrollY,
+    [0, 40],
+    ["blur(0px)", "blur(12px)"]
+  )
 
   return (
     <>
-      <main className="h-screen h-full-svh overflow-hidden">
+      <main className="h-screen h-full-svh">
         <Header
-          opacity={headerOpacity}
-          blur={headerBlur}
+          background={backgroundColor}
+          backdropBlur={backgroundBlur}
           showMenu={isHeaderMenu}
         />
         <div
+          style={{ position: "relative" }}
           ref={scrollContainerRef}
           className="w-screen h-screen h-full-svh overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
           {children}

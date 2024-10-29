@@ -8,6 +8,11 @@ import { Backpack } from "@/components/models/Backpack"
 import { ModelCanvas } from "@/components/models/ModelCanvas"
 import { auth } from "@/services/auth"
 import { redirect } from "next/navigation"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "เข้าสู่ระบบ",
+}
 
 export default async function Auth() {
   const session = await auth()

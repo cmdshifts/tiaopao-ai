@@ -53,21 +53,21 @@ const config = {
         "subtitle-lg": [
           "1rem",
           {
-            lineHeight: "1.5rem",
+            lineHeight: "1.425rem",
             fontWeight: "500",
           },
         ],
         "subtitle-md": [
           "0.875rem",
           {
-            lineHeight: "1.5rem",
+            lineHeight: "1.35rem",
             fontWeight: "500",
           },
         ],
         "subtitle-sm": [
           "0.75rem",
           {
-            lineHeight: "0.625rem",
+            lineHeight: "1.25rem",
             fontWeight: "500",
           },
         ],
