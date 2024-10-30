@@ -1,3 +1,4 @@
+import { AddressComponents } from "@/types/AddressComponents"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -53,4 +54,32 @@ export const cropImageToSquare = (image: HTMLImageElement): string => {
   )
 
   return canvas.toDataURL("image/jpeg")
+}
+
+export const getLocation = (addressComponents: AddressComponents[]) => {
+  const placeComponents: string[] = []
+
+  if (Array.isArray(addressComponents)) {
+    for (const component of addressComponents) {
+      if (
+        component.types.includes("sublocality_level_2") ||
+        component.types.includes("sublocality_level_1") ||
+        component.types.includes("administrative_area_level_1")
+      ) {
+        placeComponents.push(component.shortText)
+      }
+    }
+  }
+
+  return placeComponents.join(" ")
+}
+
+export const getOpenStatus = (
+  currentOpeningHours: { openNow: boolean } | undefined
+) => {
+  if (currentOpeningHours === undefined) {
+    return "ไม่ระบุ"
+  } else {
+    return currentOpeningHours?.openNow ? "Open now" : "Closed"
+  }
 }

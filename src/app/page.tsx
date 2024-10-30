@@ -1,5 +1,7 @@
 import { Introduction } from "@/components/sections/Introduction"
 import { ScrollLayout } from "@/components/customs/ScrollLayout"
+import { Landmark } from "@/components/sections/Landmark"
+import { Restaurant } from "@/components/sections/Restaurant"
 import { Metadata } from "next"
 import { siteConfig } from "@/configs/site.config"
 import { Footer } from "@/components/customs/Footer"
@@ -16,9 +18,12 @@ export default function Home() {
     <>
       <ScrollLayout>
         <Introduction />
-        <LogoMarquee />
+        <Landmark />
+        <Restaurant />
+
         <Problems />
         <Features />
+        <LogoMarquee />
         <Footer />
       </ScrollLayout>
     </>
