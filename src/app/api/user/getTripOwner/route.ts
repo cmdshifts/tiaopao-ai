@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(req.nextUrl)
 
     const hasUserId = searchParams.has("userId")
 

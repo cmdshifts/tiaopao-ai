@@ -11,7 +11,7 @@ export interface TripWithOwner extends Omit<TripPlan, "planOwner"> {
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const { searchParams } = new URL(request.url)
+    const { searchParams } = new URL(request.nextUrl)
     const db = getFirestore()
     const tripsRef = db.collection("trips")
 
