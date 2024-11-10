@@ -1,5 +1,5 @@
 "use server"
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
 
     const userId = searchParams.get("userId")
 
-    const db = getFirestore()
     const userRef = db.collection("users").doc(userId!)
 
     const user = (await userRef.get()).data()

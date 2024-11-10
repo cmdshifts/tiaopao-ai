@@ -1,5 +1,5 @@
 "use server"
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
@@ -18,7 +18,6 @@ export async function GET(req: NextRequest) {
     const tripId = searchParams.get("tripId")
 
     if (tripId) {
-      const db = getFirestore()
       const tripRef = db.collection("trips").doc(tripId)
 
       return NextResponse.json({

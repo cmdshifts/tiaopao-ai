@@ -1,6 +1,6 @@
 "use server"
 import { TripPlan, User } from "@/lib/types"
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export interface TripWithOwner extends Omit<TripPlan, "planOwner"> {
@@ -12,7 +12,6 @@ export interface TripWithOwner extends Omit<TripPlan, "planOwner"> {
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.nextUrl)
-    const db = getFirestore()
     const tripsRef = db.collection("trips")
 
     const hasMaxResults = searchParams.has("maxResults")
@@ -22,17 +21,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       .orderBy("createdTime", "desc")
       .get()
 
-    // Retrieve trips data and replace planOwner with user object
     const tripsWithOwners: TripWithOwner[] = await Promise.all(
       querySnapshot.docs.map(async (doc) => {
         const tripData = doc.data() as TripPlan
 
-        // Count likes
         const likeCount = Object.values(tripData.likes).filter(
           (liked) => liked === true
         ).length
 
-        // Fetch planOwner user details
         const userRef = db.collection("users").doc(tripData.planOwner!)
         const userDoc = await userRef.get()
         const userData = userDoc.exists ? (userDoc.data() as User) : null
@@ -46,12 +42,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       })
     )
 
-    // Sort trips by likeCount
     const sortedTrips = tripsWithOwners.sort(
       (a, b) => b.likeCount - a.likeCount
     )
 
-    // Apply maxResults filter if necessary
     const maxResults = hasMaxResults
       ? Number(searchParams.get("maxResults"))
       : null
