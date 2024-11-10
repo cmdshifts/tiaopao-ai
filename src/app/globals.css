@@ -63,6 +63,8 @@
   --admonition-note-rgb-value: 46, 109, 188;
   --admonition-warning-rgb-value: 255, 196, 9;
   --admonition-danger-rgb-value: 220, 38, 38;
+
+  --radio-background: #deecf4;
 }
 
 .dark {
@@ -125,6 +127,8 @@
   --admonition-note-rgb-value: 138, 180, 248;
   --admonition-warning-rgb-value: 253, 186, 116;
   --admonition-danger-rgb-value: 220, 38, 38;
+
+  --radio-background: #0d141c;
 }
 
 @font-face {
@@ -351,4 +355,106 @@
 
 .animate-marquee-reverse {
   animation: marquee-reverse 15s linear infinite;
+}
+
+#labels-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background-color: var(--radio-background);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid hsla(var(--turquoise) / 100%);
+  transition: background-color 0.3s ease;
+}
+
+.ticket {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  max-width: 600px;
+}
+.ticket__header,
+.ticket__body,
+.ticket__footer {
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px rgba(41, 54, 61, 0.15);
+}
+.ticket__header {
+  font-size: 1.5rem;
+  border-top: 0.25rem solid hsla(var(--turquoise) / 100%);
+  border-bottom: none;
+  box-shadow: none;
+}
+.ticket__wrapper {
+  box-shadow: 0 2px 4px rgba(41, 54, 61, 0.15);
+  border-radius: 0.375em 0.375em 0 0;
+  overflow: hidden;
+}
+.ticket__divider {
+  position: relative;
+  height: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.ticket__divider::after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 0;
+  border-bottom: 2px dashed #e9ebed;
+}
+.ticket__notch {
+  position: absolute;
+  left: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  overflow: hidden;
+}
+.ticket__notch::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  right: 100%;
+  top: -50%;
+  border: 0.5rem solid hsla(var(--background) / 100%);
+  border-radius: 50%;
+  box-shadow: inset 0 2px 4px rgba(41, 54, 61, 0.25);
+}
+.ticket__notch--right {
+  left: auto;
+  right: -0.5rem;
+}
+.ticket__notch--right::after {
+  right: 0;
+}
+.ticket__body {
+  border-bottom: none;
+  border-top: none;
+}
+.ticket__body > * + * {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ebed;
+}
+.ticket__section > * + * {
+  margin-top: 0.25rem;
+}
+.ticket__section > h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+.ticket__header,
+.ticket__footer {
+  font-weight: bold;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+}
+.ticket__footer {
+  border-top: 2px dashed #e9ebed;
+  border-radius: 0 0 0.325rem 0.325rem;
 }

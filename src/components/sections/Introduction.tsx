@@ -8,6 +8,8 @@ import { Highlight } from "../customs/Highlight"
 import AnimatedGradientText from "../ui/animated-gradient-text"
 import { FadeText } from "../ui/fade-text"
 import { motion } from "framer-motion"
+import Link from "next/link"
+import { RiBardFill } from "react-icons/ri"
 
 export const Introduction: React.FC = () => {
   return (
@@ -55,7 +57,15 @@ export const Introduction: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}>
-            <Button size={"lg"}>เร็ว ๆ นี้</Button>
+            <Link href={"/app"}>
+              <Button
+                variant={"default"}
+                size={"lg"}
+                className="flex items-center justify-center gap-2">
+                <RiBardFill />
+                เริ่มต้นใช้งาน
+              </Button>
+            </Link>
           </motion.div>
         </div>
         <GridPattern

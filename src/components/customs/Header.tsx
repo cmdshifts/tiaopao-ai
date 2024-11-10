@@ -167,14 +167,15 @@ export const Header: React.FC<HeaderProps> = ({
                       <motion.div
                         initial={{ y: -100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}>
-                        <Button
-                          variant={"default"}
-                          size={"lg"}
-                          onClick={handleUnavailableAlert}
-                          className="flex items-center justify-center gap-2">
-                          <RiBardFill />
-                          เริ่มต้นใช้งาน
-                        </Button>
+                        <Link href={"/app"}>
+                          <Button
+                            variant={"default"}
+                            size={"lg"}
+                            className="flex items-center justify-center gap-2">
+                            <RiBardFill />
+                            เริ่มต้นใช้งาน
+                          </Button>
+                        </Link>
                       </motion.div>
                     )}
                     {data?.user?.email ? (

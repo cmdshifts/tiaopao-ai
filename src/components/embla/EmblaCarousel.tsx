@@ -139,6 +139,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                       height={304}
                       loading="lazy"
                       data-loaded="false"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                      }}
                       onLoad={(event) => {
                         event.currentTarget.setAttribute("data-loaded", "true")
                       }}
@@ -194,7 +198,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           <div className="mt-4">
             {slides[selectedIndex]?.currentOpeningHours === undefined ? (
               <>
-                <div className="rounded-md w-max bg-gray-300 text-foreground py-1 px-3">
+                <div className="rounded-md w-max bg-gray-300 dark:bg-gray-300/5 text-foreground py-1 px-3">
                   ไม่ระบุเวลาทำการ
                 </div>
               </>

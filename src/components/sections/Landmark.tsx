@@ -79,7 +79,7 @@ export const Landmark: React.FC = () => {
         id="landmark"
         className="relative w-screen -mt-[104px] pt-[104px] z-10">
         <div className="flex flex-col items-center w-full gap-4">
-          <div className="w-full max-w-[1400px] px-4 py-3 flex justify-center md:justify-start items-center">
+          <div className="w-full max-w-[1400px] px-8 py-3 flex justify-center md:justify-start items-center">
             <div>
               <p className="relative text-heading-md">
                 Landmark
@@ -90,6 +90,7 @@ export const Landmark: React.FC = () => {
           </div>
           <div className="flex items-center w-full max-w-[1400px] pb-8">
             <EmblaCarousel
+              alignText="left"
               slides={api}
               options={OPTIONS}
             />
