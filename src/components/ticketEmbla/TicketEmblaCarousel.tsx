@@ -17,7 +17,6 @@ import { TripPlan } from "@/lib/types"
 import { cn, formatCurrency } from "@/lib/utils"
 import { TripWithOwner } from "@/app/api/trip/getAll/route"
 import { Skeleton } from "../ui/skeleton"
-import { sl } from "date-fns/locale"
 import Link from "next/link"
 
 const TWEEN_FACTOR_BASE = 0.2

@@ -109,13 +109,16 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div
-      className={cn(
-        "flex flex-col px-4 gap-8 w-full",
-        `${alignText == "left" ? "lg:flex-row-reverse" : "lg:flex-row"}`
-      )}>
-      <div className="embla m-auto lg:m-0">
+      className={
+        "grid grid-cols-1 lg:grid-cols-2 px-4 gap-8 w-full lg:flex-row"
+      }>
+      <div
+        className={cn(
+          "embla m-auto lg:m-0 grid grid-cols-1",
+          alignText === "left" ? "lg:col-start-2" : ""
+        )}>
         <div
-          className="embla__viewport h-full"
+          className="embla__viewport h-[304px] m-auto"
           style={{
             maskImage:
               "linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)",
@@ -155,7 +158,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           </div>
         </div>
 
-        <div className="embla__controls px-8 items-center justify-center sm:justify-between">
+        <div className="embla__controls px-8 items-center justify-center sm:justify-between max-w-[600px] m-auto w-full">
           <div className="embla__buttons">
             <PrevButton
               onClick={onPrevButtonClick}
@@ -182,7 +185,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       </div>
       <div
         className={cn(
-          "p-4 flex flex-col justify-between max-h-[304px] flex-1 items-center gap-4"
+          "p-4 flex flex-col justify-between max-h-[304px] flex-1 items-center gap-4",
+          alignText === "left" ? "lg:row-start-1" : ""
         )}>
         <div className="flex flex-col items-center">
           <div className="flex items-center gap-1 bg-[#DEB64B]/10 px-3 py-1 rounded-md w-max">

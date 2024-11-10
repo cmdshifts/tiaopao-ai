@@ -49,7 +49,7 @@ export const Landmark: React.FC = () => {
               radius: 5000.0,
             },
           },
-          maxResultCount: 10,
+          maxResultCount: 8,
           includedTypes: ["tourist_attraction"],
           excludedPrimaryTypes: [
             "lodging",

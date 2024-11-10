@@ -2,12 +2,14 @@
 import { TripDetails } from "@/components/customs/TripDetails"
 import { TripPlan } from "@/lib/types"
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import { RiLoaderLine } from "react-icons/ri"
 
 export default function Page({ params }: { params: { tripId: string } }) {
   const tripId = params.tripId
   const { data } = useSession()
+  const router = useRouter()
 
   const [tripData, setTripData] = useState<TripPlan | null>(null)
   const [loading, setLoading] = useState(true)
@@ -38,7 +40,7 @@ export default function Page({ params }: { params: { tripId: string } }) {
     fetchTrip()
   }, [tripId])
 
-  if (!data || !data.user.id) return null
+  if (!data || !data.user.id) return router.push("/")
 
   if (!tripData) return null
 

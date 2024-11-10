@@ -32,7 +32,7 @@ export const Features = () => {
               transition={{ duration: 0.5, delay: 0.05 }}>
               <p className="w-max relative whitespace-nowrap text-subtitle-lg text-center text-darkTurquoise uppercase">
                 ฟีเจอร์
-                <Highlight />
+                <Highlight className="z-10" />
               </p>
               <h2 className="text-heading-lg text-center px-8">
                 ทริปเที่ยวป่าว
@@ -157,7 +157,7 @@ export const Features = () => {
                         fill="#A3A3A3"></path>
                     </g>
                     <image
-                      href="/images/png/cover.png"
+                      href="/images/png/generating.png"
                       width="1200"
                       height="700"
                       x="1"
@@ -299,7 +299,7 @@ export const Features = () => {
                         fill="#A3A3A3"></path>
                     </g>
                     <image
-                      href="/images/png/cover.png"
+                      href="/images/png/interesting.png"
                       width="1200"
                       height="700"
                       x="1"
@@ -591,7 +591,7 @@ export const Features = () => {
                         fill="#A3A3A3"></path>
                     </g>
                     <image
-                      href="/images/png/cover.png"
+                      href="/images/png/landmark.png"
                       width="1200"
                       height="700"
                       x="1"
