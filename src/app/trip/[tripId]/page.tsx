@@ -2,7 +2,8 @@
 import { TripDetails } from "@/components/customs/TripDetails"
 import { TripPlan } from "@/lib/types"
 import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import { RiLoaderLine } from "react-icons/ri"
 
 export default function Page({ params }: { params: { tripId: string } }) {
   const tripId = params.tripId
@@ -30,7 +31,7 @@ export default function Page({ params }: { params: { tripId: string } }) {
       } catch (error) {
         console.error(error)
       } finally {
-        setLoading(true)
+        setLoading(false)
       }
     }
 
@@ -44,7 +45,12 @@ export default function Page({ params }: { params: { tripId: string } }) {
   return (
     <>
       {loading ? (
-        <>Loading...</>
+        <>
+          <div className="w-full h-full flex items-center justify-center gap-4">
+            <RiLoaderLine className="text-2xl animate-spin" />
+            กำลังโหลดข้อมูล...
+          </div>
+        </>
       ) : (
         <>
           <TripDetails
