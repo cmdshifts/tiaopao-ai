@@ -16,23 +16,23 @@ export default function History() {
   const [buttonClicked, setButtonClicked] = useState<boolean>(false)
   const [isFetching, setIsFetching] = useState<boolean>(true)
 
+  const fetchTrips = async (userId: string) => {
+    setIsFetching(true)
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/trips`,
+      {
+        method: "POST",
+        body: JSON.stringify({ planOwner: userId }),
+      }
+    )
+
+    const result = await response.json()
+    setResult(result)
+    setIsFetching(false)
+  }
+
   useEffect(() => {
-    const fetchTrips = async () => {
-      setIsFetching(true)
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/trips`,
-        {
-          method: "POST",
-          body: JSON.stringify({ planOwner: data?.user.id }),
-        }
-      )
-
-      const result = await response.json()
-      setResult(result)
-      setIsFetching(false)
-    }
-
-    fetchTrips()
+    fetchTrips(data?.user.id!)
   }, [data?.user.id])
 
   const handleDeleteTrip = async (tripId: string) => {
@@ -46,6 +46,7 @@ export default function History() {
       )
       if (response.status === 200) {
         console.log("Trip deleted successfully")
+        fetchTrips(data?.user.id!)
       }
     } catch (error) {
       console.error("Error deleting trip:", error)
@@ -80,7 +81,7 @@ export default function History() {
         </div>
         <Separator className="my-2" />
         <div className="mt-2 flex flex-col gap-2">
-          {result ? (
+          {result !== null ? (
             result.data.map((trip: any, index: any) => (
               <Link
                 key={index}

@@ -1,6 +1,6 @@
 "use server"
 import { auth } from "@/services/auth"
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function PUT(req: NextRequest) {
@@ -8,7 +8,6 @@ export async function PUT(req: NextRequest) {
   const data = await req.json()
 
   try {
-    const db = getFirestore()
     const userRef = db.collection("users").doc(session?.user.id!)
 
     await userRef.update({ ...data })

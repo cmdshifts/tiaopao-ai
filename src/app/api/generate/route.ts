@@ -3,8 +3,8 @@ import { auth } from "@/services/auth"
 import { NextRequest, NextResponse } from "next/server"
 import axios from "axios"
 import { AgentEvent } from "@/lib/types"
-import { getFirestore } from "firebase-admin/firestore"
 import { format } from "date-fns"
+import { db } from "@/services/firebaseAdmin"
 
 export async function POST(req: NextRequest) {
   try {
@@ -100,7 +100,6 @@ export async function POST(req: NextRequest) {
     }
 
     if (session && tripDetails.status === 200) {
-      const db = getFirestore()
       const tripRef = db.collection("trips").doc(planId)
 
       await tripRef

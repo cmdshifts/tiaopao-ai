@@ -3,45 +3,22 @@ import { AccountSideNav } from "@/components/customs/AccountSideNav"
 import { Footer } from "@/components/customs/Footer"
 import { Header } from "@/components/customs/Header"
 import { Separator } from "@/components/ui/separator"
-import { useScroll, useTransform } from "framer-motion"
-import React, { useRef } from "react"
+import React from "react"
 
 export default function AccountLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollY } = useScroll({
-    container: scrollContainerRef,
-  })
-
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 40],
-    ["hsla(var(--background) / 0)", "hsla(var(--background) / 0.65)"]
-  )
-
-  const backgroundBlur = useTransform(
-    scrollY,
-    [0, 40],
-    ["blur(0px)", "blur(12px)"]
-  )
-
   return (
     <>
       <Header
         showCTAButton={false}
         isNotification={false}
         showMenu={false}
-        background={backgroundColor}
-        backdropBlur={backgroundBlur}
-        className="shadow-sm"
+        className="shadow-sm bg-background/65 backdrop-blur-[12px]"
       />
-      <div
-        ref={scrollContainerRef}
-        className="pt-[64px] w-screen h-screen h-full-svh flex flex-col items-center overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
+      <div className="pt-[64px] w-screen h-screen h-full-svh flex flex-col items-center overflow-x-hidden overflow-y-auto scrollbar-hide scroll-smooth">
         <section className="max-w-[1400px] w-screen p-4 flex-1">
           <div className="grid grid-cols-12 gap-4">
             <div className="h-max col-span-12 md:col-span-4 bg-background border-2 border-gray-500/0 rounded-sm p-2 select-none">

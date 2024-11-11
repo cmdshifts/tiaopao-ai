@@ -1,11 +1,9 @@
 "use server"
-
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
   try {
-    const db = getFirestore()
     const tripsRef = db.collection("trips")
     const body = await req.json()
 

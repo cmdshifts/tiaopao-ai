@@ -1,13 +1,11 @@
 "use server"
-
-import { getFirestore } from "firebase-admin/firestore"
+import { db } from "@/services/firebaseAdmin"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function DELETE(req: NextRequest) {
   try {
     const body = await req.json()
 
-    const db = getFirestore()
     const tripRef = db.collection("trips").doc(body.tripId)
     const data = (await tripRef.get()).data()
 
