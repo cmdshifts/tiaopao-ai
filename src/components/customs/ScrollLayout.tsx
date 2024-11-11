@@ -36,6 +36,7 @@ export const ScrollLayout: React.FC<ScrollLayoutProps> = ({
         <Header
           background={backgroundColor}
           backdropBlur={backgroundBlur}
+          showCTAButton={true}
           showMenu={isHeaderMenu}
         />
         <div

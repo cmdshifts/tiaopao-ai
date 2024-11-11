@@ -3,7 +3,12 @@ import Link from "next/link"
 import React from "react"
 import { LogoutModal } from "./LogoutModal"
 import { Separator } from "../ui/separator"
-import { RiChatHistoryLine, RiEditLine, RiSettingsLine } from "react-icons/ri"
+import {
+  RiChatHistoryLine,
+  RiEditLine,
+  RiHeart3Line,
+  RiSettingsLine,
+} from "react-icons/ri"
 import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
 
@@ -35,6 +40,18 @@ export const AccountSideNav = () => {
             className="flex items-center px-4 py-3 gap-2 w-full">
             <RiChatHistoryLine />
             <p>ประวัติการใช้งาน</p>
+          </Link>
+        </li>
+        <li
+          className={cn(
+            "hover:bg-gray-500/15 cursor-pointer flex items-center",
+            `${pathname == "/account/likes" ? "bg-gray-500/10" : "bg-transparent"}`
+          )}>
+          <Link
+            href={"/account/likes"}
+            className="flex items-center px-4 py-3 gap-2 w-full">
+            <RiHeart3Line />
+            <p>การถูกใจ</p>
           </Link>
         </li>
         <li

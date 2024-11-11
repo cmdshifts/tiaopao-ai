@@ -16,7 +16,7 @@ export const Introduction: React.FC = () => {
     <>
       <section
         id="#introduction"
-        className="relative w-screen h-screen h-full-svh">
+        className="relative w-screen h-screen h-full-svh z-50">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="grey"

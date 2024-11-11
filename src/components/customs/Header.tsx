@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
 }: HeaderProps) => {
   const { className, ...rest } = props
   const classNames = cn(
-    "z-50 fixed flex flex-col items-center justify-center w-full select-none transition-all duration-200 ease-in-out",
+    "z-[9999] fixed flex flex-col items-center justify-center w-full select-none transition-all duration-200 ease-in-out",
     className
   )
 
@@ -303,7 +303,7 @@ export const Header: React.FC<HeaderProps> = ({
                     {isNavMenuOpen && (
                       <div
                         ref={navMenuRef}
-                        className="absolute right-0 pt-2 w-56 block bg-background">
+                        className="absolute right-0 pt-2 w-56 block">
                         <ul className="bg-background rounded-lg shadow-sm border border-gray-500/20 p-1 [&>li]:rounded-sm flex flex-col gap-1 [&>li]:transition-all [&>li]:duration-200 [&>li]:ease-in-out">
                           {showMenu && (
                             <>
@@ -386,6 +386,14 @@ export const Header: React.FC<HeaderProps> = ({
                                   </Link>
                                 </li>
                                 <Separator />
+                                <li className="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/80 cursor-pointer flex items-center gap-2">
+                                  <Link
+                                    href={"/app"}
+                                    className="flex items-center gap-2 w-full h-full">
+                                    <RiBardFill />
+                                    <p>เริ่มต้นใช้งาน</p>
+                                  </Link>
+                                </li>
                                 <LogoutModal
                                   isModalOpen={isModal}
                                   onModalOpenChange={setIsModal}
@@ -398,8 +406,12 @@ export const Header: React.FC<HeaderProps> = ({
                                   <li
                                     className="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/80 cursor-pointer flex items-center gap-2"
                                     onClick={handleUnavailableAlert}>
-                                    <RiBardFill />
-                                    <p>เริ่มต้นใช้งาน</p>
+                                    <Link
+                                      href={"/app"}
+                                      className="flex items-center gap-2 w-full h-full">
+                                      <RiBardFill />
+                                      <p>เริ่มต้นใช้งาน</p>
+                                    </Link>
                                   </li>
                                 )}
                                 <li className="px-4 py-2 hover:bg-gray-500/15 cursor-pointer flex items-center gap-2">
