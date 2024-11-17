@@ -5,6 +5,7 @@ import axios from "axios"
 import { AgentEvent } from "@/lib/types"
 import { format } from "date-fns"
 import { db } from "@/services/firebaseAdmin"
+import { rearrangeTripPlan } from "@/lib/utils"
 
 export async function POST(req: NextRequest) {
   try {
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
         },
         query: "Plan a trip",
         response_mode: "streaming",
-        user: session?.user.id,
+        user: session?.user.id || "anonymous",
       },
       {
         headers: {
@@ -67,8 +68,6 @@ export async function POST(req: NextRequest) {
       agentMessage.answer.replace(/^```json\n/, "").replace(/\n```$/, "")
     )
 
-    console.log("fetch by filter province", body.province)
-
     const tripDetails = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/generate/fetchFromResult`,
       {
@@ -85,7 +84,7 @@ export async function POST(req: NextRequest) {
     const planId =
       Date.now().toString(36) + Math.random().toString(36).slice(2, 11)
 
-    const tripResult = {
+    const tripResult = rearrangeTripPlan({
       planId: planId,
       planOwner: session?.user.id,
       province: body.province.provinceNameTh,
@@ -97,7 +96,7 @@ export async function POST(req: NextRequest) {
       createdDate: format(new Date(), "yyyy-MM-dd"),
       createdTime: format(new Date(), "HH:mm:ss"),
       likes: {},
-    }
+    })
 
     if (session && tripDetails.status === 200) {
       const tripRef = db.collection("trips").doc(planId)

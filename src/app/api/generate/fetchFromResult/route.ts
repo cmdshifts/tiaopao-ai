@@ -1,4 +1,5 @@
 "use server"
+import { isProvinceMatch } from "@/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest) {
                   "Content-Type": "application/json",
                   "X-Goog-Api-Key": GOOGLE_API_KEY,
                   "X-Goog-FieldMask":
-                    "places.id,places.types,places.addressComponents,places.rating,places.businessStatus,places.displayName.text,places.photos,places.googleMapsUri,places.currentOpeningHours.openNow",
+                    "places.id,places.types,places.addressComponents,places.rating,places.businessStatus,places.displayName.text,places.photos,places.googleMapsUri,places.currentOpeningHours.openNow,places.location",
                 },
                 body: JSON.stringify({
                   textQuery: name,
@@ -40,9 +41,10 @@ export async function POST(req: NextRequest) {
                         latitude: body.province.coords.lat,
                         longitude: body.province.coords.lng,
                       },
-                      radius: 500.0,
+                      radius: 5000.0,
                     },
                   },
+                  pageSize: 20,
                 }),
               }
             )
@@ -54,14 +56,91 @@ export async function POST(req: NextRequest) {
             }
 
             const data = await response.json()
-            const placeData = data.places[0]
 
-            return {
-              // eslint-disable-next-line no-unused-vars
-              ...(({ name, ...rest }) => rest)(place),
-              // eslint-disable-next-line no-unused-vars
-              ...(({ photos, reviews, ...rest }) => rest)(placeData),
-              photos: placeData.photos ? placeData.photos[0] : null,
+            for (const placeData of data.places) {
+              if (
+                isProvinceMatch(
+                  body.province.provinceNameTh,
+                  placeData.addressComponents
+                )
+              ) {
+                console.log("DEFAULT!", placeData)
+
+                return {
+                  // eslint-disable-next-line no-unused-vars
+                  ...(({ name, ...rest }) => rest)(place),
+                  // eslint-disable-next-line no-unused-vars
+                  ...(({ photos, reviews, ...rest }) => rest)(placeData),
+                  photos: placeData.photos ? placeData.photos[0] : null,
+                }
+              } else {
+                try {
+                  const response = await fetch(
+                    "https://places.googleapis.com/v1/places:searchNearby",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        "X-Goog-Api-Key": GOOGLE_API_KEY,
+                        "X-Goog-FieldMask":
+                          "places.id,places.types,places.addressComponents,places.rating,places.businessStatus,places.displayName.text,places.photos,places.googleMapsUri,places.currentOpeningHours.openNow,places.location",
+                      },
+                      body: JSON.stringify({
+                        maxResultCount: 20,
+                        locationRestriction: {
+                          circle: {
+                            center: {
+                              latitude: body.province.coords.lat,
+                              longitude: body.province.coords.lng,
+                            },
+                            radius: 5000.0,
+                          },
+                        },
+                        languageCode: "th",
+                        includedTypes: [
+                          "tourist_attraction",
+                          "restaurant",
+                          "cafe",
+                        ],
+                        excludedPrimaryTypes: [
+                          "lodging",
+                          "hotel",
+                          "hostel",
+                          "school",
+                          "secondary_school",
+                          "event_venue",
+                        ],
+                      }),
+                    }
+                  )
+
+                  const placesResult = (await response.json()).places
+                  console.log("NEARBY!", placesResult)
+                  if (placesResult.length === 0) {
+                    throw new Error(
+                      "No places found in the specified location."
+                    )
+                  }
+
+                  const randomPlace =
+                    placesResult[
+                      Math.floor(Math.random() * placesResult.length)
+                    ]
+
+                  console.log("RANDOMED!", randomPlace)
+
+                  return {
+                    // eslint-disable-next-line no-unused-vars
+                    ...(({ name, ...rest }) => rest)(place),
+                    // eslint-disable-next-line no-unused-vars
+                    ...(({ photos, reviews, ...rest }) => rest)(randomPlace),
+                    photos: randomPlace.photos ? randomPlace.photos[0] : null,
+                  }
+                } catch (error) {
+                  console.error("Error fetching places:", error)
+                  throw error
+                }
+              }
             }
           })
         )

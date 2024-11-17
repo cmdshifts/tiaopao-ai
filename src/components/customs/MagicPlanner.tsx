@@ -17,8 +17,6 @@ export const MagicPlanner: React.FC<MagicPlannerProps> = () => {
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false)
   const [savedPromptVariables, setSavedPromptVariables] =
     useState<PromptVariables | null>(null)
-  const [savedGeneratedVariables, setSavedGeneratedVariables] =
-    useState<PromptVariables | null>(null)
   const [savedResult, setSavedResult] = useState<TripPlan | null>(null)
 
   const handleStateChange = (

@@ -1,7 +1,7 @@
 import { AddressComponents } from "@/types/AddressComponents"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Companion, LikeState, Province } from "./types"
+import { Companion, LikeState, Place, Province, TripPlan } from "./types"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -214,4 +214,99 @@ export const findNestedErrorMessage = (errorObj: any): string | null => {
     }
   }
   return null
+}
+
+export const isProvinceMatch = (
+  province: string,
+  addressComponents: AddressComponents[]
+) => {
+  return addressComponents.some(
+    (component) =>
+      component.longText.includes(province) ||
+      component.shortText.includes(province)
+  )
+}
+
+export const calculateDistance = (
+  lat1: number,
+  lng1: number,
+  lat2: number,
+  lng2: number
+) => {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLng = ((lng2 - lng1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
+}
+
+export const calculateRouteDistance = (route: Place[]): number => {
+  let totalDistance = 0
+
+  for (let i = 0; i < route.length - 1; i++) {
+    totalDistance += calculateDistance(
+      route[i].location?.latitude!,
+      route[i].location?.longitude!,
+      route[i + 1].location?.latitude!,
+      route[i + 1].location?.longitude!
+    )
+  }
+
+  return totalDistance
+}
+
+export const findBestRoute = (places: Place[]): Place[] => {
+  if (places.length <= 1) return places
+
+  const permute = (arr: Place[]): Place[][] => {
+    if (arr.length <= 1) return [arr]
+    const result: Place[][] = []
+    for (let i = 0; i < arr.length; i++) {
+      const current = arr[i]
+      const remaining = arr.slice(0, i).concat(arr.slice(i + 1))
+      const remainingPermuted = permute(remaining)
+      for (const perm of remainingPermuted) {
+        result.push([current, ...perm])
+      }
+    }
+    return result
+  }
+
+  // Generate all possible permutations of places
+  const allPermutations = permute(places)
+
+  // Find the route with the shortest distance
+  let bestRoute: Place[] = []
+  let shortestDistance = Infinity
+
+  for (const route of allPermutations) {
+    const distance = calculateRouteDistance(route)
+    if (distance < shortestDistance) {
+      shortestDistance = distance
+      bestRoute = route
+    }
+  }
+
+  return bestRoute.map((place, index) => ({
+    ...place,
+    timeToVisit: places[index].timeToVisit, // Preserve original timeToVisit
+  }))
+}
+
+export const rearrangeTripPlan = (tripPlan: TripPlan): TripPlan => {
+  const updatedData = tripPlan.data.map((dayPlan) => ({
+    ...dayPlan,
+    places: findBestRoute(dayPlan.places),
+  }))
+
+  return {
+    ...tripPlan,
+    data: updatedData,
+  }
 }

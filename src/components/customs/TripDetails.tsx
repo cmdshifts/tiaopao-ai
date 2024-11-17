@@ -33,6 +33,8 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
   const [likeCount, setLikeCount] = useState<number>(0)
   const [tripOwner, setTripOwner] = useState<any>(null)
 
+  console.log("###TRIPDATA:", tripData)
+
   useEffect(() => {
     const fetchTripOwner = async () => {
       const owner = await fetch(
@@ -177,46 +179,52 @@ export const TripDetails: React.FC<TripDetailsProps> = ({
                       flex: 0.25,
                     },
                   }}>
-                  {item.places.map((place, index) => (
-                    <div key={index}>
-                      <TimelineItem>
-                        <TimelineOppositeContent
-                          sx={{ m: "auto 0" }}
-                          align="right"
-                          variant="body2"
-                          color="text.secondary">
-                          <p className="font-seedSans text-foreground text-subtitle-sm">
-                            {place?.timeToVisit}
-                          </p>
-                        </TimelineOppositeContent>
-                        <TimelineSeparator>
-                          <TimelineConnector />
-                          <TimelineDot variant="outlined" />
-                          <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent sx={{ py: "12px", px: 2 }}>
-                          <div className="font-seedSans flex items-center gap-4 select-none cursor-pointer">
-                            <Image
-                              src={`https://places.googleapis.com/v1/${place?.photos?.name}/media?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&maxWidthPx=400`}
-                              alt={place.displayName?.text! || place.name!}
-                              height={60}
-                              width={80}
-                              className="aspect-[4/3] rounded-md pointer-events-none"
-                            />
-                            <div>
-                              <h6 className="text-subtitle-lg">
-                                {place?.displayName?.text || place?.name}
-                              </h6>
-                              <p>{getLocation(place?.addressComponents!)}</p>
-                              <p className="text-subtitle-sm mt-2">
-                                ค่าใช้จ่ายโดยประมาณ {place.budget} บาท
+                  {item.places.map((place, index) => {
+                    if (place) {
+                      return (
+                        <div key={index}>
+                          <TimelineItem>
+                            <TimelineOppositeContent
+                              sx={{ m: "auto 0" }}
+                              align="right"
+                              variant="body2"
+                              color="text.secondary">
+                              <p className="font-seedSans text-foreground text-subtitle-sm">
+                                {place?.timeToVisit}
                               </p>
-                            </div>
-                          </div>
-                        </TimelineContent>
-                      </TimelineItem>
-                    </div>
-                  ))}
+                            </TimelineOppositeContent>
+                            <TimelineSeparator>
+                              <TimelineConnector />
+                              <TimelineDot variant="outlined" />
+                              <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent sx={{ py: "12px", px: 2 }}>
+                              <div className="font-seedSans flex items-center gap-4 select-none cursor-pointer">
+                                <Image
+                                  src={`https://places.googleapis.com/v1/${place?.photos?.name}/media?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&maxWidthPx=400`}
+                                  alt={place.displayName?.text! || place.name!}
+                                  height={60}
+                                  width={80}
+                                  className="aspect-[4/3] rounded-md pointer-events-none"
+                                />
+                                <div>
+                                  <h6 className="text-subtitle-lg">
+                                    {place?.displayName?.text || place?.name}
+                                  </h6>
+                                  <p>
+                                    {getLocation(place?.addressComponents!)}
+                                  </p>
+                                  <p className="text-subtitle-sm mt-2">
+                                    ค่าใช้จ่ายโดยประมาณ {place.budget} บาท
+                                  </p>
+                                </div>
+                              </div>
+                            </TimelineContent>
+                          </TimelineItem>
+                        </div>
+                      )
+                    }
+                  })}
                 </Timeline>
               </div>
             ))}

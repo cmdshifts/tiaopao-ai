@@ -96,6 +96,10 @@ export type Place = {
   currentOpeningHours?: {
     openNow: boolean
   }
+  location?: {
+    latitude: number
+    longitude: number
+  }
   photos?: Photo
 }
 
