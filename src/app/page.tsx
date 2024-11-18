@@ -9,6 +9,7 @@ import { Problems } from "@/components/sections/Problems"
 import { Features } from "@/components/sections/Features"
 import type { Metadata } from "next"
 import { Interesting } from "@/components/sections/Interesting"
+import { Bubble } from "@typebot.io/nextjs"
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -26,6 +27,10 @@ export default function Home() {
         <Features />
         <LogoMarquee />
         <Footer />
+        <Bubble
+          typebot="my-typebot-0bnhu0j"
+          theme={{ button: { backgroundColor: "#2E9CC9" } }}
+        />
       </ScrollLayout>
     </>
   )

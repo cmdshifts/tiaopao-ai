@@ -17,8 +17,8 @@ export const TripTicket: React.FC<TripTicketProps> = ({ trip }) => {
           <header className="ticket__wrapper">
             <Image
               src={`https://places.googleapis.com/v1/${
-                trip.data[0].places[0].photos
-                  ? trip.data[0].places[0].photos.name
+                trip.data[0]?.places[0]?.photos
+                  ? trip.data[0]?.places[0]?.photos?.name
                   : undefined
               }/media?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&maxWidthPx=1200`}
               alt={trip.data[0]?.places[0]?.photos?.name!}
@@ -33,7 +33,7 @@ export const TripTicket: React.FC<TripTicketProps> = ({ trip }) => {
               onLoad={(event) => {
                 event.currentTarget.setAttribute("data-loaded", "true")
               }}
-              className="h-full aspect-auto max-h-[240px] data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-900/10 rounded-t-sm rounded-b-none"
+              className="min-h-[240px] h-full aspect-auto max-h-[240px] data-[loaded=false]:animate-pulse data-[loaded=false]:bg-gray-900/10 rounded-t-sm rounded-b-none"
             />
             <div className="ticket__header bg-background !text-foreground !font-semibold !items-center !text-heading-sm !py-2 !px-4">
               <p className="font-semibold">{trip.province}</p>

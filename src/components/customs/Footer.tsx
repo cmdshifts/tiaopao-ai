@@ -1,4 +1,6 @@
+import Link from "next/link"
 import React from "react"
+import { Button } from "../ui/button"
 
 interface FooterProps {}
 
@@ -10,6 +12,13 @@ export const Footer: React.FC<FooterProps> = () => {
           <div className="text-subtitle-sm text-gray-500">
             <p>© 2024 TripTiaoPao.com. All Rights Reserved.</p>
           </div>
+          <Link href="/developers">
+            <Button
+              variant={"link"}
+              className="text-subtitle-sm text-gray-500">
+              เกี่ยวกับเรา
+            </Button>
+          </Link>
         </nav>
       </section>
     </>

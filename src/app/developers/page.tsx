@@ -142,7 +142,7 @@ export default function Developers() {
               <AvatarFallback>AS</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-sm text-center">2110511101034</p>
+              <p className="text-sm text-center">2110511101032</p>
               <h2 className="text-lg font-medium text-center">
                 อภิชาติ ศรีอำพร
               </h2>
